@@ -3,6 +3,7 @@ package com.study.domain.post;
 import lombok.Getter;
 import lombok.Setter;
 
+//lombok 라이브러리로 모든 멤버 변수에 대해 getter setter를 생성해주는 역할을 한다.
 @Getter
 @Setter
 public class PostRequest {

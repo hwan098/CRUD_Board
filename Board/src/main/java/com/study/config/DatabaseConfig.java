@@ -38,8 +38,8 @@ public class DatabaseConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {	//데이터베이스의 커넥션과 SQL실행에 대한 모든 것을 갖는 역할이다.
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
-		factoryBean.setMapperLocations(context.getResources("classpath:/mappers/**/*Mapper.xml"));
-        factoryBean.setConfiguration(mybatisConfig());
+		factoryBean.setMapperLocations(context.getResources("classpath:/mappers/**/*Mapper.xml"));	//Mapper XML의 경로를 지정해, 스프링이 Mapper XML을 인식할 수 있도록 함
+        factoryBean.setConfiguration(mybatisConfig());	//mybatisConfig( ) 빈(Bean)을 이용하여 MyBatis 옵션을 설정한다.
         return factoryBean.getObject();
     }
 
@@ -49,7 +49,7 @@ public class DatabaseConfig {
     }
     
     @Bean
-    @ConfigurationProperties(prefix = "mybatis.configuration")
+    @ConfigurationProperties(prefix = "mybatis.configuration")	//application.properties에서 mybatis.configuration으로 시작하는 모든 설정을 읽어, 빈(Bean)으로 등록한다.
     public org.apache.ibatis.session.Configuration mybatisConfig() {
         return new org.apache.ibatis.session.Configuration();
     }
