@@ -24,7 +24,7 @@ public class PostController {
     public String openPostWrite(@RequestParam(value = "id", required = false) final Long id, Model model) {
         if (id != null) {
             PostResponse post = postService.findPostById(id);
-            model.addAttribute("post", post);
+            model.addAttribute("post", post);	//화면으로 데이터 전달--> HTML에서 ${} 표현식 사용해서 데이터에 접근함
         }
         return "post/write";
     }
