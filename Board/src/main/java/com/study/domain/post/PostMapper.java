@@ -2,6 +2,7 @@ package com.study.domain.post;
 
 import org.apache.ibatis.annotations.Mapper;
 
+
 import java.util.List;
 
 @Mapper
@@ -34,12 +35,13 @@ public interface PostMapper {
 
     /**
      * 게시글 리스트 조회
+     * @param params - search conditions
      * @return 게시글 리스트
      */
-    List<PostResponse> findAll(SearchDto params);	//게시글 목록을 조회하는 SELECT쿼리를 호출하는 메서드
+    List<PostResponse> findAll();
 
     /**
-     * @param params - search conditions
+     * 게시글 수 카운팅
      * @return 게시글 수
      */
     int count();	//전체 게시글 수를 조회하는 SELECT쿼리를 호출하는 메서드--> 페이징 기능에서 사용

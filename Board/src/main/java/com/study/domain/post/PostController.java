@@ -36,10 +36,10 @@ public class PostController {
         MessageDto message = new MessageDto("게시글 생성이 완료되었습니다.", "/post/list.do", RequestMethod.GET, null);
         return showMessageAndRedirect(message, model);
     }
-    // 게시글 리스트 페이지
+ // 게시글 리스트 페이지
     @GetMapping("/post/list.do")
-    public String openPostList(@ModelAttribute("params") final SearchDto params, Model model) {
-        List<PostResponse> posts = postService.findAllPost(params);
+    public String openPostList(Model model) {
+        List<PostResponse> posts = postService.findAllPost();
         model.addAttribute("posts", posts);
         return "post/list";
     }
