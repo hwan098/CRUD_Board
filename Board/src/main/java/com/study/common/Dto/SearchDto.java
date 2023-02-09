@@ -1,5 +1,7 @@
 package com.study.common.Dto;
 
+import com.study.paging.Pagination;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,15 +14,16 @@ public class SearchDto {
     private int pageSize;         // 화면 하단에 출력할 페이지 사이즈
     private String keyword;       // 검색 키워드
     private String searchType;    // 검색 유형
+    private Pagination pagination;
 
     public SearchDto() {
         this.page = 1;
         this.recordSize = 10;
         this.pageSize = 10;
     }
-
+/*LIMIT 구문에서 pagination의 limitStart를 이용하므로 getOffset( ) 메서드가 제거
     public int getOffset() {
         return (page - 1) * recordSize;
     }
-
+*/
 }
