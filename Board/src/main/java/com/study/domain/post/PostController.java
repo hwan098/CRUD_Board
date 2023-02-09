@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.common.Dto.*;
+import com.study.paging.PagingResponse;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,8 +40,8 @@ public class PostController {
  // 게시글 리스트 페이지
     @GetMapping("/post/list.do")
     public String openPostList(@ModelAttribute("params") final SearchDto params, Model model) {
-        List<PostResponse> posts = postService.findAllPost(params);
-        model.addAttribute("posts", posts);
+        PagingResponse<PostResponse> response = postService.findAllPost(params);
+        model.addAttribute("response", response);
         return "post/list";
     }
     // 게시글 상세 페이지
