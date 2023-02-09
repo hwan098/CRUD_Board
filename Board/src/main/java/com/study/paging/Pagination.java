@@ -23,7 +23,7 @@ public class Pagination {
 	private void calculation(SearchDto params) {
 		
 		//전체 페이지 수 계산-->데이터개수 / 한 페이지에 출력할 데이터 수
-		totalPageCount = totalRecordCount / params.getRecordSize();
+		totalPageCount = (totalRecordCount - 1) / params.getRecordSize() + 1;
 		
 		//현재 페이지 번호가 전체 페이지 수보다 큰 경우,  현재 페이지 변호에 전체 페이지 수 저장
 		if( params.getPage() > totalPageCount) {
@@ -31,9 +31,9 @@ public class Pagination {
 		}
 		
 		// 첫 페이지 번호 계산 --> (현재 페이지 번호 / 출력할 페이지 수) * 출력할 페이지 수 --> 5/10
-		startPage = (params.getPage() / params.getPageSize()) * params.getPageSize();
+		startPage = ((params.getPage() - 1) / params.getPageSize()) * params.getPageSize() + 1;
 		// 끝 페이지 번호 계산
-		endPage = params.getPage() + params.getRecordSize();
+		endPage = startPage + params.getPageSize() - 1;
 		
 		// 끝 페이지 번호가 전체 페이지 수보다 큰 경우, 끝 페이지번호에 전체 페이지 수 저장
 		if(endPage > totalPageCount) {
