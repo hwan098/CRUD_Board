@@ -4,8 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.study.common.Dto.SearchDto;
+import com.study.paging.Pagination;
+import com.study.paging.PagingResponse;
 
 import javax.transaction.Transactional;
+
+import java.util.Collections;
 import java.util.List;
 
 @Service	//비즈니스 로직을 담당하는 Service Layer의 클래스임을 의미한다.
@@ -57,10 +61,21 @@ public class PostService {
 
     /**
      * 게시글 리스트 조회
-     * @return 게시글 리스트
+     * @param params - search conditions
+     * @return list & pagination information
      */
-    public List<PostResponse> findAllPost(final SearchDto params) {
-        return postMapper.findAll(params);
+    public PagingResponse<PostResponse> findAllPost(final SearchDto params) {
+
+        int count = postMapper.count(params);
+        if (count < 1) {
+            return new PagingResponse<>(Collections.emptyList(), null);
+        }
+
+        Pagination pagination = new Pagination(count, params);
+        params.setPagination(pagination);
+
+        List<PostResponse> list = postMapper.findAll(params);
+        return new PagingResponse<>(list, pagination);
     }
 
 }
