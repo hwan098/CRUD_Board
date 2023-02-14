@@ -43,6 +43,7 @@ public interface PostMapper {
 
     /**
      * 게시글 수 카운팅
+     * @param params - search conditions
      * @return 게시글 수
      */
     int count(SearchDto params);	//전체 게시글 수를 조회하는 SELECT쿼리를 호출하는 메서드--> 페이징 기능에서 사용

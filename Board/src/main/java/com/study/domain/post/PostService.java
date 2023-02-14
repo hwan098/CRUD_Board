@@ -1,4 +1,5 @@
 package com.study.domain.post;
+import com.study.common.Dto.SearchDto; 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
