@@ -1,8 +1,9 @@
 package com.study.domain.post;
-
+import com.study.common.Dto.SearchDto;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,9 +66,20 @@ public class PostController {
     	MessageDto message = new MessageDto("게시글 삭제가 완료되었습니다.", "/post/list.do", RequestMethod.GET, null);
     	return showMessageAndRedirect(message, model);
     }
- // 사용자에게 메시지를 전달하고, 페이지를 리다이렉트 한다.
+    // 사용자에게 메시지를 전달하고, 페이지를 리다이렉트 한다.
     private String showMessageAndRedirect(final MessageDto params, Model model) {
         model.addAttribute("params", params);
         return "common/messageRedirect";
+    }
+    
+    // 쿼리 스트링 파라미터를 Map에 담아 반환한다.
+    private Map<String, Object> queryParamsToMap(final SearchDto queryParams) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("page", queryParams.getPage());
+        data.put("recordSize", queryParams.getRecordSize());
+        data.put("pageSize", queryParams.getPageSize());
+        data.put("keyword", queryParams.getKeyword());
+        data.put("searchType", queryParams.getSearchType());
+        return data;
     }
 }
