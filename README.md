@@ -1,2 +1,2 @@
 # CRUD_Board
-CRUD_Board
+학습을 위해 진행한 게시판 프로젝트입니다.
